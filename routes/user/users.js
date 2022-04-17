@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var { User } = require("../model/user");
+var { User } = require("../../model/user");
 var bcrypt = require("bcryptjs"); //plain password ah encrypt panni store
 var jwt = require("jsonwebtoken");
-
+var userOrderRoute = require("./order");
 /* GET users listing. */
 router.post("/register", async function (req, res, next) {
   req.body.userType = "USER";
@@ -65,5 +65,8 @@ router.post("/login", async function (req, res) {
     });
   }
 });
+
+router.use("/order", userOrderRoute);
+router.use("/products", userOrderRoute);
 
 module.exports = router;

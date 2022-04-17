@@ -26,6 +26,10 @@ const ProductSchema = mongoose.Schema({
   },
   description : {
       type : String
+  },
+  publish : {
+    type : String,
+    default : true
   }
 });
 
