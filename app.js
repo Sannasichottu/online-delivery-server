@@ -9,6 +9,7 @@ var usersRouter = require('./routes/user/users');
 var adminRouter = require('./routes/admin/admin');
 
 var app = express();
+var cors = require("cors");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,10 +20,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+  origin:"*"
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
